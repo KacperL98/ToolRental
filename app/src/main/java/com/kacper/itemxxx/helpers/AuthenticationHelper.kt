@@ -1,6 +1,7 @@
 package com.kacper.itemxxx.helpers
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 
 object AuthenticationHelper {
@@ -10,5 +11,6 @@ object AuthenticationHelper {
     fun getUserAuth() {
         auth = FirebaseAuth.getInstance()
     }
+
 
 }

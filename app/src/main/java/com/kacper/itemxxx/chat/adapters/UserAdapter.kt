@@ -36,17 +36,17 @@ class UserAdapter(
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
 
+    override fun getItemCount(): Int {
         return mUsers.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, i: Int) {
-
-        val user: Users = mUsers[i]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val user: Users = mUsers[position]
         holder.userNameTxt.text = user.getUserName()
-//        Picasso.get().load(user.getProfile()).placeholder(R.drawable.profile)
-//            .into(holder.profileImageView)
+
+ //Picasso.get().load(lastMsg).placeholder(R.drawable.profile)
+         //   .into(holder.profileImageView)
 
         if (isChatCheck) {
             retrieveLastMessage(user.getUID(), holder.lastMessageTxt)
@@ -93,8 +93,13 @@ class UserAdapter(
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        fun bind(users: Users) {
+            userNameTxt.text = users.getUserName()
+
+        }
         var userNameTxt: TextView = itemView.findViewById(R.id.username)
-        var profileImageView: CircleImageView = itemView.findViewById(R.id.profile_image)
+        var profileImageView: CircleImageView = itemView.findViewById(R.id.profile_image_2)
         var onlineImageView: CircleImageView = itemView.findViewById(R.id.image_online)
         var offlineImageView: CircleImageView = itemView.findViewById(R.id.image_offline)
         var lastMessageTxt: TextView = itemView.findViewById(R.id.message_last)

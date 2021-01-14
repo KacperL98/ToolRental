@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/profile_image_2"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/profile"/>
@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="user name"
-            android:layout_toEndOf="@id/profile_image"
+            android:layout_toEndOf="@id/profile_image_2"
             android:layout_centerInParent="true"
             android:layout_marginStart="12dp"
             android:textSize="19sp"/>
@@ -42,7 +42,7 @@
         android:layout_below="@+id/username"
         android:layout_marginTop="12dp"
         android:layout_marginStart="-16dp"
-        android:layout_toEndOf="@+id/profile_image"
+        android:layout_toEndOf="@+id/profile_image_2"
         android:visibility="gone"/>
 
     <TextView
@@ -50,7 +50,7 @@
         android:layout_below="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/profile_image"
+        android:layout_toEndOf="@id/profile_image_2"
         android:layout_marginTop="14dp"
         android:padding="6dp"
         android:layout_marginStart="20dp"

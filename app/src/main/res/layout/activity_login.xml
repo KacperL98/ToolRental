@@ -52,8 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-
-            android:text="kacper.litwinow@gmail.com" />
+ />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:text="Kacperek2011" />
+          />
 
     </com.google.android.material.textfield.TextInputLayout>
 

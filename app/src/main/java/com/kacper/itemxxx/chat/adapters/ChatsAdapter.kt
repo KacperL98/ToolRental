@@ -9,17 +9,17 @@ import com.google.firebase.auth.FirebaseUser
 import com.kacper.itemxxx.chat.model.Chat
 import com.kacper.itemxxx.chat.viewholders.ChatLeftViewHolder
 import com.kacper.itemxxx.chat.viewholders.ChatRightViewHolder
+import com.kacper.itemxxx.helpers.AuthenticationHelper.auth
 
 private const val MSG_TYPE_LEFT = 0
 private const val MSG_TYPE_RIGHT = 1
 
 class ChatsAdapter(private val image_url: String) :
     ListAdapter<Chat, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
+
     var firebaseUser: FirebaseUser = FirebaseAuth.getInstance().currentUser!!
-   var auth = FirebaseAuth.getInstance()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
         return if (viewType == MSG_TYPE_RIGHT) {
             ChatRightViewHolder.create(parent)
         } else {
@@ -35,7 +35,7 @@ class ChatsAdapter(private val image_url: String) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (getItem(position).sender == auth.currentUser?.uid) {
+        return if (getItem(position).sender == auth?.currentUser?.uid) {
             MSG_TYPE_RIGHT
         } else {
             MSG_TYPE_LEFT
