@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name" translatable="false">ItemXXX</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_activity_bottom" translatable="false">MainActivity</string>
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_dashboard" translatable="false">Dashboard</string>
+    <string name="title_notifications" translatable="false">Notifications</string>
+    <string name="name" translatable="false">Name</string>
+
+    <string name="scan" translatable="false">Scan</string>
+    <string name="recent_scanned" translatable="false">Recent Scanned</string>
+    <string name="favourites" translatable="false">Favourites</string>
+    <string name="about_app" translatable="false">About App</string>
+    <string name="qr_code_scanner" translatable="false">QR Code Scanner</string>
+    <string name="recent_scanned_results">Recent Scanned Results</string>
+    <string name="delete">Delete</string>
+    <string name="want_to_delete">Do you really want to delete this result?</string>
+    <string name="cancel">Cancel</string>
+    <string name="clear_all">Clear all</string>
+    <string name="clear_all_result">Are you sure to clear all scanned result?</string>
+    <string name="clear">Clear</string>
+    <string name="favourites_scanned_results">Favourite Scanned Results</string>
+    <string name="grant_permissions">Grant Permissions</string>
+    <string name="we_need_permission">We need camera permission to scan QR codes. Go to App Settings and managepermissions </string>
+    <string name="grant">Grant</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="app">app_</string>
+    <string name="identifier">Identifier:</string>
+    <string name="enter_number">Enter Number</string>
+</resources>

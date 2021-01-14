@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#B30053</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#B8B5B5</color>
+    <color name="colorText">#000000</color>
+    <color name="colorLightGray">#B7FFFFFF</color>
+    <color name="colorWhite">#fff</color>
+    <color name="White">#fff</color>
+
+
+    <color name="white">#ffffff</color>
+    <color name="colorTranslucent">#50000000</color>
+    <color name="lightColor">#64E71A</color>
+    <color name="lightGray">#D1D0D0</color>
+    <color name="darkBrown">#FFFFFF</color>
+    <color name="backPanel">#000000</color>
+    <color name="btnColor">#B30053</color>
+    <color name="scanColor">#918D8D</color>
+    <color name="resetColor">#ffffff</color>
+
+    //chat
+    <color name="colorProfile">#1C223C</color>
+    <color name="colorChat">#FB0075</color>
+
+
+</resources>

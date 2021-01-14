@@ -1,0 +1,44 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="Theme_Dialog" parent="ThemeOverlay.AppCompat.Dialog">
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
+    <style parent="Widget.MaterialComponents.BottomNavigationView" name="BottomMenuActiveItem">
+
+        <item name="itemTextColor">@color/white</item>
+
+        <item name="itemIconTint">@color/white</item>
+
+    </style>
+    <style parent="Widget.MaterialComponents.BottomNavigationView" name="BottomMenuInActiveItem">
+
+        <item name="itemTextColor">@color/colorPrimaryDark</item>
+
+        <item name="itemIconTint">@color/colorPrimaryDark</item>
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style parent="Theme.AppCompat.Light.Dialog.Alert" name="CustomAlertDialog">
+        <item name="android:background">@color/darkBrown</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/white</item>
+
+    </style>
+
+</resources>
