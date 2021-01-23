@@ -16,12 +16,13 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             >
+
             <ImageView
                 android:id="@+id/cover_image_settings1"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:src="@drawable/cover"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                android:src="@drawable/cover" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image_settings1"

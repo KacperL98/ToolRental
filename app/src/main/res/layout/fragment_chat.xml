@@ -6,7 +6,7 @@
     tools:context=".chat.chatsFragment.ChatFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_chatlist"
+        android:id="@+id/recycler_view_chatList"
         android:layout_width="match_parent"
         android:padding="10dp"
         android:layout_height="match_parent"/>

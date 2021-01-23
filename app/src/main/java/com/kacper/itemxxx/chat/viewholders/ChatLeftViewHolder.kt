@@ -14,7 +14,7 @@ import com.kacper.itemxxx.R
 import com.kacper.itemxxx.chat.chatsActivity.ViewFullImageActivity
 import com.kacper.itemxxx.chat.model.Chat
 import com.kacper.itemxxx.databinding.MessageItemLeftBinding
-import com.kacper.itemxxx.toastViewHolder
+import com.kacper.itemxxx.helpers.toastViewHolder
 import com.squareup.picasso.Picasso
 
 class ChatLeftViewHolder(private val binding: MessageItemLeftBinding) :

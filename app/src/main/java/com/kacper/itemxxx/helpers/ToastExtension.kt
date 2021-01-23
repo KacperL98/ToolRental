@@ -1,4 +1,4 @@
-package com.kacper.itemxxx
+package com.kacper.itemxxx.helpers
 
 import android.content.Context
 import android.view.View

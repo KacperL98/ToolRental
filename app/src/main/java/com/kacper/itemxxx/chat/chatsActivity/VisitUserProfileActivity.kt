@@ -26,9 +26,9 @@ class VisitUserProfileActivity : AppCompatActivity() {
             override fun onDataChange(pO: DataSnapshot) {
                 if (pO.exists()) {
                     user = pO.getValue(Users::class.java)
-                    username_display.text = user!!.getUserName()
-                    Picasso.get().load(user!!.getProfile()).placeholder(R.drawable.profile).into(profile_display1)
-                    Picasso.get().load(user!!.getCover()).placeholder(R.drawable.cover).into(cover_display1)
+                    username_display.text = user!!.username
+                    Picasso.get().load(user!!.profile).placeholder(R.drawable.profile).into(profile_display1)
+                    Picasso.get().load(user!!.cover).placeholder(R.drawable.cover).into(cover_display1)
                 }
             }
             override fun onCancelled(pO: DatabaseError) {
@@ -36,7 +36,7 @@ class VisitUserProfileActivity : AppCompatActivity() {
         })
         send_msg_btn.setOnClickListener {
             val intent = Intent(this@VisitUserProfileActivity, MessageChatActivity::class.java)
-            intent.putExtra("visit_id", user!!.getUID())
+            intent.putExtra("visit_id", user!!.uid)
             startActivity(intent)
         }
     }

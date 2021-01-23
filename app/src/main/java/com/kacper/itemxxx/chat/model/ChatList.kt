@@ -1,5 +1,6 @@
 package com.kacper.itemxxx.chat.model
 
+
 class ChatList{
 
     private var id:String = ""

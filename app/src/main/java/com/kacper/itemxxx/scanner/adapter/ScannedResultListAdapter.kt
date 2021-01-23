@@ -10,9 +10,7 @@ import com.kacper.itemxxx.R
 import com.kacper.itemxxx.db.entities.DatabaseDao
 import com.kacper.itemxxx.db.entities.QrResult
 import com.kacper.itemxxx.scanner.dialogs.QrCodeResultDialog
-import com.kacper.itemxxx.utils.gone
 import com.kacper.itemxxx.utils.toFormattedDisplay
-import com.kacper.itemxxx.utils.visible
 import kotlinx.android.synthetic.main.layout_single_item_qr_result.view.*
 
 class ScannedResultListAdapter(
@@ -57,9 +55,9 @@ class ScannedResultListAdapter(
 
         private fun setFavourite(isFavourite: Boolean) {
             if (isFavourite)
-                view.favouriteIcon.visible()
+                view.favouriteIcon.visibility = View.VISIBLE
             else
-                view.favouriteIcon.gone()
+                view.favouriteIcon.visibility = View.GONE
         }
 
 

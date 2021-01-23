@@ -13,8 +13,6 @@ import com.kacper.itemxxx.db.entities.DbHelper
 import com.kacper.itemxxx.db.entities.DatabaseDao
 import com.kacper.itemxxx.db.entities.QrResult
 import com.kacper.itemxxx.scanner.adapter.ScannedResultListAdapter
-import com.kacper.itemxxx.utils.gone
-import com.kacper.itemxxx.utils.visible
 import kotlinx.android.synthetic.main.fragment_scanned_history.view.*
 import kotlinx.android.synthetic.main.layout_header_history.view.*
 import java.io.Serializable
@@ -119,15 +117,15 @@ class ScannedHistoryFragment : Fragment() {
     }
 
     private fun showRecyclerView() {
-        mView.layoutHeader.removeAll.visible()
-        mView.scannedHistoryRecyclerView.visible()
-        mView.noResultFound.gone()
+        mView.layoutHeader.removeAll.visibility = View.VISIBLE
+        mView.scannedHistoryRecyclerView.visibility = View.VISIBLE
+        mView.noResultFound.visibility = View.GONE
     }
 
     private fun showEmptyState() {
-        mView.layoutHeader.removeAll.gone()
-        mView.scannedHistoryRecyclerView.gone()
-        mView.noResultFound.visible()
+        mView.layoutHeader.removeAll.visibility = View.GONE
+        mView.scannedHistoryRecyclerView.visibility = View.GONE
+        mView.noResultFound.visibility = View.VISIBLE
 
     }
     companion object {

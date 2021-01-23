@@ -2,15 +2,13 @@ package com.kacper.itemxxx.authorization
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.EmailAuthProvider
-import com.google.firebase.auth.FirebaseAuth
 import com.kacper.itemxxx.R
 import com.kacper.itemxxx.helpers.AuthenticationHelper.auth
 import com.kacper.itemxxx.helpers.AuthenticationHelper.getUserAuth
 import com.kacper.itemxxx.mainPanel.PanelActivity
-import com.kacper.itemxxx.toastCustom
+import com.kacper.itemxxx.helpers.toastCustom
 import kotlinx.android.synthetic.main.activity_change_password.*
 
 class ChangePasswordActivity : AppCompatActivity() {

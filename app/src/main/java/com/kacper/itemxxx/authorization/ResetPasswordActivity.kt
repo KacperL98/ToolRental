@@ -2,13 +2,11 @@ package com.kacper.itemxxx.authorization
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.kacper.itemxxx.R
 import com.kacper.itemxxx.helpers.AuthenticationHelper.auth
 import com.kacper.itemxxx.helpers.AuthenticationHelper.getUserAuth
-import com.kacper.itemxxx.toastCustom
+import com.kacper.itemxxx.helpers.toastCustom
 import kotlinx.android.synthetic.main.activity_reset_password.*
 
 class ResetPasswordActivity : AppCompatActivity() {

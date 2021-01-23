@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.kacper.itemxxx.R
-import com.kacper.itemxxx.toastFragment
+import com.kacper.itemxxx.helpers.toastFragment
 import kotlinx.android.synthetic.main.fragment_first.view.*
 
 class FirstTutorialFragment : Fragment() {

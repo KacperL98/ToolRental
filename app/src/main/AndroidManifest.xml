@@ -4,7 +4,7 @@
     package="com.kacper.itemxxx">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -16,25 +16,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".chat.chatsActivity.MessageChatActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".chat.chatsActivity.VisitUserProfileActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".chat.chatsActivity.ViewFullImageActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".chat.chatsActivity.ChatActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".authorization.ResetPasswordActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".authorization.ChangePasswordActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".mainPanel.PanelActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".authorization.RegisterActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".authorization.LoginActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".cameraPermission.Permission"
+        <activity
+            android:name=".chat.chatsActivity.MessageChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.chatsActivity.VisitUserProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.chatsActivity.ViewFullImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.chatsActivity.ChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".authorization.ResetPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".authorization.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mainPanel.PanelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".authorization.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".authorization.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".cameraPermission.Permission"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,8 +52,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".scanner.mainactivity.MainActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".scanner.mainactivity.MainActivity"
+            android:screenOrientation="portrait" />
+
         <service
             android:name=".chat.notifications.MyFirebaseMessaging"
             android:enabled="true"
@@ -53,7 +65,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
             android:name=".chat.notifications.MyFirebaseInstanceId"
             android:enabled="true"

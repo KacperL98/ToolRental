@@ -22,7 +22,7 @@ import com.kacper.itemxxx.chat.notifications.Token
 
 class ChatFragment : Fragment() {
     private var userAdapter: UserAdapter? = null
-    private var mUsers: List<Users>? = null
+    private var users: List<Users>? = null
     private var usersChatList: List<ChatList>? = null
     lateinit var recyclerViewChatList: RecyclerView
     private var firebaseUser: FirebaseUser? = null
@@ -34,7 +34,7 @@ class ChatFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_chat, container, false)
 
-        recyclerViewChatList = view.findViewById(R.id.recycler_view_chatlist)
+        recyclerViewChatList = view.findViewById(R.id.recycler_view_chatList)
         recyclerViewChatList.setHasFixedSize(true)
         recyclerViewChatList.layoutManager = LinearLayoutManager(context)
 
@@ -46,10 +46,10 @@ class ChatFragment : Fragment() {
             override fun onDataChange(pO: DataSnapshot) {
                 (usersChatList as ArrayList).clear()
 
-                for (dataSnaphot in pO.children){
-                    val chatlist = dataSnaphot.getValue(ChatList::class.java)
+                for (dataSnapshot in pO.children){
+                    val chatList = dataSnapshot.getValue(ChatList::class.java)
 
-                    (usersChatList as ArrayList).add(chatlist!!)
+                    (usersChatList as ArrayList).add(chatList!!)
                 }
                 retrieveChatList()
             }
@@ -63,31 +63,28 @@ class ChatFragment : Fragment() {
         val ref = FirebaseDatabase.getInstance().reference.child("Tokens")
         val token1 = Token(token!!)
         ref.child(firebaseUser!!.uid).setValue(token1)
-
     }
-
     private fun retrieveChatList(){
-        mUsers = ArrayList()
+        users = ArrayList()
 
         val ref = FirebaseDatabase.getInstance().reference.child("Users")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(pO: DataSnapshot) {
 
-                (mUsers as ArrayList).clear()
+                (users as ArrayList).clear()
                 for (dataSnapshot in pO.children){
                     val user = dataSnapshot.getValue(Users::class.java)
                     for (eachChatList in usersChatList!!){
-                        if (user!!.getUID().equals(eachChatList.getId())){
-                            (mUsers as ArrayList).add(user)
+                        if (user!!.uid == eachChatList.getId()){
+                            (users as ArrayList).add(user)
                         }
                     }
                 }
-                userAdapter = UserAdapter(context!!, (mUsers as ArrayList<Users>), true)
+                userAdapter = UserAdapter(context!!, (users as ArrayList<Users>), true)
                 recyclerViewChatList.adapter = userAdapter
             }
 
             override fun onCancelled(pO: DatabaseError) {
-
             }
         })
     }

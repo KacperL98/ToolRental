@@ -113,9 +113,6 @@ class ChatRightViewHolder(private val binding: MessageItemRightBinding) :
             }
     }
 
-    interface ChatMessageListener {
-
-    }
 
     companion object {
         fun create(parent: ViewGroup): ChatRightViewHolder {

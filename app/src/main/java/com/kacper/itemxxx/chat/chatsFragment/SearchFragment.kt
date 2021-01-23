@@ -22,10 +22,9 @@ import com.kacper.itemxxx.chat.model.Users
 class SearchFragment : Fragment() {
 
     private var userAdapter: UserAdapter? = null
-    private var mUsers: List<Users>? = null
+     lateinit var users: List<Users>
     private var recyclerView: RecyclerView? = null
     private var searchEditText: EditText? = null
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,52 +37,42 @@ class SearchFragment : Fragment() {
         recyclerView!!.layoutManager = LinearLayoutManager(context)
         searchEditText = view.findViewById(R.id.searchUsersEt)
 
-        mUsers = ArrayList()
+        users = ArrayList()
         retrieveAllUsers()
-
         searchEditText!!.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
             }
-
             override fun onTextChanged(cs: CharSequence?, start: Int, before: Int, count: Int) {
                 searchForUsers(cs.toString().toLowerCase())
+
             }
-
             override fun afterTextChanged(s: Editable?) {
-
             }
         })
-
         return view
     }
-
     private fun retrieveAllUsers() {
         val firebaseUserID = FirebaseAuth.getInstance().currentUser!!.uid
 
         val refUsers = FirebaseDatabase.getInstance().reference.child("Users")
-
         refUsers.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(pO: DataSnapshot) {
-
-                (mUsers as ArrayList<Users>).clear()
+                (users as ArrayList<Users>).clear()
                 if (searchEditText!!.text.toString() == ""){
 
                     for (snapshot in pO.children ){
 
                         val user: Users? = snapshot.getValue(Users::class.java)
-                        if (!(user!!.getUID()).equals(firebaseUserID)){
-                            (mUsers as ArrayList<Users>).add(user)
+                        if (!(user!!.uid).equals(firebaseUserID)){
+                            (users as ArrayList<Users>).add(user)
                         }
                     }
-
-                    userAdapter = UserAdapter(requireContext(), mUsers as ArrayList<Users>, false)
+                    userAdapter = UserAdapter(context!!, users as ArrayList<Users>, false)
                     recyclerView!!.adapter = userAdapter
                 }
             }
             override fun onCancelled(pO: DatabaseError) {
             }
-
         })
     }
     private fun searchForUsers (str: String){
@@ -94,21 +83,19 @@ class SearchFragment : Fragment() {
             .endAt(str + "\uf8ff")
         queryUsers.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(pO: DataSnapshot) {
-                (mUsers as ArrayList<Users>).clear()
+                (users as ArrayList<Users>).clear()
 
                 for (snapshot in pO.children ){
                     val user: Users? = snapshot.getValue(Users::class.java)
-                    if (!(user!!.getUID()).equals(firebaseUserID)){
-                        (mUsers as ArrayList<Users>).add(user)
+                    if (!(user!!.uid).equals(firebaseUserID)){
+                        (users as ArrayList<Users>).add(user)
                     }
                 }
-                userAdapter = UserAdapter(context!!, mUsers!!, false)
+                userAdapter = UserAdapter(context!!, users as ArrayList<Users>, false)
                 recyclerView!!.adapter = userAdapter
             }
             override fun onCancelled(pO: DatabaseError) {
             }
-
         })
-
     }
 }

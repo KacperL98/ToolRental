@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorChat"
             app:tabIndicator="@android:color/white"/>
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
             android:background="@android:color/white"

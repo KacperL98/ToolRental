@@ -3,17 +3,14 @@ package com.kacper.itemxxx.authorization
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.kacper.itemxxx.R
 import com.kacper.itemxxx.helpers.AuthenticationHelper.auth
 import com.kacper.itemxxx.helpers.AuthenticationHelper.getUserAuth
 import com.kacper.itemxxx.helpers.AuthenticationHelper.refUsers
 import com.kacper.itemxxx.mainPanel.PanelActivity
-import com.kacper.itemxxx.toastCustom
+import com.kacper.itemxxx.helpers.toastCustom
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {

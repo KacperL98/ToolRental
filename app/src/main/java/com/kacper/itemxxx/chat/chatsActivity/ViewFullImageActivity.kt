@@ -17,5 +17,6 @@ class ViewFullImageActivity : AppCompatActivity() {
         setContentView(binding.root)
         imageUrl = intent.getStringExtra("url")!!
         Picasso.get().load(imageUrl).into(binding.imageViewer)
+
     }
 }
