@@ -28,6 +28,7 @@ import com.kacper.itemxxx.helpers.AuthenticationHelper.refUsers
 import com.kacper.itemxxx.mainPanel.PanelActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_chat.*
+import kotlinx.android.synthetic.main.activity_permission.*
 import kotlinx.android.synthetic.main.activity_visit_user_profile.*
 import kotlinx.android.synthetic.main.user_search_item_layout.view.*
 
@@ -44,12 +45,10 @@ class ChatActivity : AppCompatActivity() {
             val intent = Intent(this@ChatActivity, PanelActivity::class.java)
             startActivity(intent)
         }
-        setSupportActionBar(toolbar_main)
+        setSupportActionBar(binding.toolbarMain)
         firebaseUser = FirebaseAuth.getInstance().currentUser
         refUsers = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar_main)
-        setSupportActionBar(toolbar)
         supportActionBar!!.title = ""
         val tabLayout: TabLayout = findViewById(R.id.tab_layout)
         val viewPager: ViewPager = findViewById(R.id.view_pager)
