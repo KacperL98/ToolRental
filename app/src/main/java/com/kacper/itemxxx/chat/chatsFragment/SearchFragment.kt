@@ -18,28 +18,31 @@ import com.google.firebase.database.ValueEventListener
 import com.kacper.itemxxx.R
 import com.kacper.itemxxx.chat.adapters.UserAdapter
 import com.kacper.itemxxx.chat.model.Users
+import com.kacper.itemxxx.databinding.FragmentChatBinding
+import com.kacper.itemxxx.databinding.FragmentSearchBinding
 
 class SearchFragment : Fragment() {
 
     private var userAdapter: UserAdapter? = null
      lateinit var users: List<Users>
-    private var recyclerView: RecyclerView? = null
-    private var searchEditText: EditText? = null
+    private var _binding: FragmentSearchBinding? = null
+    private val binding
+        get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_search, container, false)
+        _binding = FragmentSearchBinding.inflate(layoutInflater, container, false)
 
-        recyclerView = view.findViewById(R.id.searchList)
-        recyclerView!!.setHasFixedSize(true)
-        recyclerView!!.layoutManager = LinearLayoutManager(context)
-        searchEditText = view.findViewById(R.id.searchUsersEt)
+        binding.recyclerSearchList.setHasFixedSize(true)
+        binding.recyclerSearchList.layoutManager = LinearLayoutManager(context)
+
 
         users = ArrayList()
         retrieveAllUsers()
-        searchEditText!!.addTextChangedListener(object : TextWatcher {
+        binding.searchUsersEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
             override fun onTextChanged(cs: CharSequence?, start: Int, before: Int, count: Int) {
@@ -49,7 +52,7 @@ class SearchFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {
             }
         })
-        return view
+        return binding.root
     }
     private fun retrieveAllUsers() {
         val firebaseUserID = FirebaseAuth.getInstance().currentUser!!.uid
@@ -58,17 +61,17 @@ class SearchFragment : Fragment() {
         refUsers.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(pO: DataSnapshot) {
                 (users as ArrayList<Users>).clear()
-                if (searchEditText!!.text.toString() == ""){
+                if (binding.searchUsersEt.text.toString() == ""){
 
                     for (snapshot in pO.children ){
 
                         val user: Users? = snapshot.getValue(Users::class.java)
-                        if (!(user!!.uid).equals(firebaseUserID)){
+                        if ((user!!.uid) != firebaseUserID){
                             (users as ArrayList<Users>).add(user)
                         }
                     }
                     userAdapter = UserAdapter(context!!, users as ArrayList<Users>, false)
-                    recyclerView!!.adapter = userAdapter
+                    binding.recyclerSearchList.adapter = userAdapter
                 }
             }
             override fun onCancelled(pO: DatabaseError) {
@@ -87,12 +90,12 @@ class SearchFragment : Fragment() {
 
                 for (snapshot in pO.children ){
                     val user: Users? = snapshot.getValue(Users::class.java)
-                    if (!(user!!.uid).equals(firebaseUserID)){
+                    if ((user!!.uid) != firebaseUserID){
                         (users as ArrayList<Users>).add(user)
                     }
                 }
                 userAdapter = UserAdapter(context!!, users as ArrayList<Users>, false)
-                recyclerView!!.adapter = userAdapter
+                binding.recyclerSearchList.adapter = userAdapter
             }
             override fun onCancelled(pO: DatabaseError) {
             }

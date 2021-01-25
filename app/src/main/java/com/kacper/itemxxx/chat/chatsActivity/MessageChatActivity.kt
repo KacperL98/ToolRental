@@ -22,6 +22,8 @@ import com.kacper.itemxxx.chat.notifications.APIService
 import com.kacper.itemxxx.chat.model.Chat
 import com.kacper.itemxxx.chat.model.Users
 import com.kacper.itemxxx.chat.notifications.*
+import com.kacper.itemxxx.databinding.ActivityChatBinding
+import com.kacper.itemxxx.databinding.ActivityMessageChatBinding
 import com.kacper.itemxxx.helpers.AuthenticationHelper.firebaseUser
 import com.kacper.itemxxx.helpers.AuthenticationHelper.refUsers
 import com.squareup.picasso.Picasso
@@ -37,16 +39,16 @@ class MessageChatActivity : AppCompatActivity() {
     var chatList: List<Chat>? = null
     var notify = false
     var apiService: APIService? = null
-    lateinit var recyclerViewChats: RecyclerView
+    private lateinit var binding: ActivityMessageChatBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_message_chat)
-        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_message_chat)
-        setSupportActionBar(toolbar)
+        binding = ActivityMessageChatBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        setSupportActionBar(binding.toolbarMessageChat)
         supportActionBar!!.title = ""
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        toolbar.setNavigationOnClickListener {
+        binding.toolbarMessageChat.setNavigationOnClickListener {
             finish()
         }
         apiService = Client.Client.getClient("https://fcm.googleapis.com/")!!.create(
@@ -55,11 +57,12 @@ class MessageChatActivity : AppCompatActivity() {
         intent = intent
         userIdVisit = intent.getStringExtra("visit_id")!!
         firebaseUser = FirebaseAuth.getInstance().currentUser
-        recyclerViewChats = findViewById(R.id.recycler_view_chats)
-        recyclerViewChats.setHasFixedSize(true)
+
+
+        binding.recyclerViewChats.setHasFixedSize(true)
         val linearLayoutManager = LinearLayoutManager(applicationContext)
         linearLayoutManager.stackFromEnd = true
-        recyclerViewChats.layoutManager = linearLayoutManager
+        binding.recyclerViewChats.layoutManager = linearLayoutManager
 
         refUsers = FirebaseDatabase.getInstance().reference
             .child("Users").child(userIdVisit)
@@ -296,7 +299,7 @@ class MessageChatActivity : AppCompatActivity() {
                     chatsAdapter = ChatsAdapter(receiverImageUrl ?: "")
                     Log.d("TAG", "KURWA ${chatList?.map { it }}")
                     chatsAdapter?.submitList(chatList)
-                    recyclerViewChats.adapter = chatsAdapter
+                    binding.recyclerViewChats.adapter = chatsAdapter
 
                 }
             }

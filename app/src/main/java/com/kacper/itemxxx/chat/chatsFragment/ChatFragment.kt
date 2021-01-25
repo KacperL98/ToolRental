@@ -19,52 +19,56 @@ import com.kacper.itemxxx.chat.adapters.UserAdapter
 import com.kacper.itemxxx.chat.model.ChatList
 import com.kacper.itemxxx.chat.model.Users
 import com.kacper.itemxxx.chat.notifications.Token
+import com.kacper.itemxxx.databinding.FragmentChatBinding
 
 class ChatFragment : Fragment() {
     private var userAdapter: UserAdapter? = null
     private var users: List<Users>? = null
     private var usersChatList: List<ChatList>? = null
-    lateinit var recyclerViewChatList: RecyclerView
     private var firebaseUser: FirebaseUser? = null
+    private var _binding: FragmentChatBinding? = null
+    private val binding
+        get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_chat, container, false)
-
-        recyclerViewChatList = view.findViewById(R.id.recycler_view_chatList)
-        recyclerViewChatList.setHasFixedSize(true)
-        recyclerViewChatList.layoutManager = LinearLayoutManager(context)
+        _binding = FragmentChatBinding.inflate(layoutInflater, container, false)
+        binding.recyclerViewChatList.setHasFixedSize(true)
+        binding.recyclerViewChatList.layoutManager = LinearLayoutManager(context)
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
-
         usersChatList = ArrayList()
-        val ref  = FirebaseDatabase.getInstance().reference.child("ChatList").child(firebaseUser!!.uid)
+
+        val ref =
+            FirebaseDatabase.getInstance().reference.child("ChatList").child(firebaseUser!!.uid)
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(pO: DataSnapshot) {
                 (usersChatList as ArrayList).clear()
 
-                for (dataSnapshot in pO.children){
+                for (dataSnapshot in pO.children) {
                     val chatList = dataSnapshot.getValue(ChatList::class.java)
-
                     (usersChatList as ArrayList).add(chatList!!)
                 }
                 retrieveChatList()
             }
+
             override fun onCancelled(pO: DatabaseError) {
             }
         })
         updateToken(FirebaseInstanceId.getInstance().token)
-        return view
+        return binding.root
     }
+
     private fun updateToken(token: String?) {
         val ref = FirebaseDatabase.getInstance().reference.child("Tokens")
         val token1 = Token(token!!)
         ref.child(firebaseUser!!.uid).setValue(token1)
     }
-    private fun retrieveChatList(){
+
+    private fun retrieveChatList() {
         users = ArrayList()
 
         val ref = FirebaseDatabase.getInstance().reference.child("Users")
@@ -72,16 +76,16 @@ class ChatFragment : Fragment() {
             override fun onDataChange(pO: DataSnapshot) {
 
                 (users as ArrayList).clear()
-                for (dataSnapshot in pO.children){
+                for (dataSnapshot in pO.children) {
                     val user = dataSnapshot.getValue(Users::class.java)
-                    for (eachChatList in usersChatList!!){
-                        if (user!!.uid == eachChatList.getId()){
+                    for (eachChatList in usersChatList!!) {
+                        if (user!!.uid == eachChatList.getId()) {
                             (users as ArrayList).add(user)
                         }
                     }
                 }
                 userAdapter = UserAdapter(context!!, (users as ArrayList<Users>), true)
-                recyclerViewChatList.adapter = userAdapter
+                binding.recyclerViewChatList.adapter = userAdapter
             }
 
             override fun onCancelled(pO: DatabaseError) {

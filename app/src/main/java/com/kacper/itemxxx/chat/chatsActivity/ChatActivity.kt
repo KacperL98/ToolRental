@@ -3,6 +3,7 @@ package com.kacper.itemxxx.chat.chatsActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -33,9 +34,7 @@ import kotlinx.android.synthetic.main.activity_visit_user_profile.*
 import kotlinx.android.synthetic.main.user_search_item_layout.view.*
 
 class ChatActivity : AppCompatActivity() {
-    private var imageUrl: String =""
     private lateinit var binding: ActivityChatBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
@@ -49,10 +48,8 @@ class ChatActivity : AppCompatActivity() {
         firebaseUser = FirebaseAuth.getInstance().currentUser
         refUsers = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
 
-        supportActionBar!!.title = ""
-        val tabLayout: TabLayout = findViewById(R.id.tab_layout)
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
 
+        supportActionBar!!.title = ""
         val ref = FirebaseDatabase.getInstance().reference.child("Chats")
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(pO: DataSnapshot) {
@@ -71,8 +68,8 @@ class ChatActivity : AppCompatActivity() {
                 }
                 viewPagerAdapter.addFragment(SearchFragment(), "Search")
                 viewPagerAdapter.addFragment(SettingsFragment(), "Settings")
-                viewPager.adapter = viewPagerAdapter
-                tabLayout.setupWithViewPager(viewPager)
+                binding.viewPager.adapter = viewPagerAdapter
+                binding.tabLayout.setupWithViewPager(binding.viewPager)
             }
 
             override fun onCancelled(pO: DatabaseError) {
@@ -83,7 +80,8 @@ class ChatActivity : AppCompatActivity() {
                 if (pO.exists()) {
                     val user: Users? = pO.getValue(Users::class.java)
                     user_name.text = user!!.username
-                   Picasso.get().load(user.profile).placeholder(R.drawable.profile).into(binding.profileImage)
+                    Picasso.get().load(user.profile).placeholder(R.drawable.profile)
+                        .into(binding.profileImage)
                 }
             }
 

@@ -14,7 +14,7 @@
     </EditText>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/searchList"
+        android:id="@+id/recyclerSearchList"
         android:layout_below="@+id/searchUsersEt"
         android:padding="10dp"
         android:layout_width="match_parent"

@@ -21,6 +21,8 @@ import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
 import com.kacper.itemxxx.R
 import com.kacper.itemxxx.chat.model.Users
+import com.kacper.itemxxx.databinding.FragmentSearchBinding
+import com.kacper.itemxxx.databinding.FragmentSettingsBinding
 import com.kacper.itemxxx.helpers.AuthenticationHelper.firebaseUser
 import com.kacper.itemxxx.helpers.AuthenticationHelper.refUsers
 import com.squareup.picasso.Picasso
@@ -34,12 +36,16 @@ class SettingsFragment : Fragment() {
     private var imageUri: Uri? = null
     private var storageRef: StorageReference? = null
     private var coverChecker: String? = ""
+    private var _binding: FragmentSettingsBinding? = null
+    private val binding
+        get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_settings, container, false)
+        _binding = FragmentSettingsBinding.inflate(layoutInflater, container, false)
 
         firebaseUser = FirebaseAuth.getInstance().currentUser
         refUsers = FirebaseDatabase.getInstance().reference.child("Users").child(firebaseUser!!.uid)
@@ -56,27 +62,25 @@ class SettingsFragment : Fragment() {
                     val user: Users? = pO.getValue(Users::class.java)
 
                     if (context != null) {
-
-                        view.username_settings.text = user!!.username
+                        binding.usernameSettings.text = user!!.username
                         Picasso.get().load(user.profile).placeholder(R.drawable.profile)
                             .into(profile_image_settings1)
                         Picasso.get().load(user.cover).placeholder(R.drawable.cover)
                             .into(cover_image_settings1)
-
                     }
                 }
             }
         })
-        view.profile_image_settings1.setOnClickListener {
+        binding.profileImageSettings1.setOnClickListener {
             pickImage()
         }
 
-        view.cover_image_settings1.setOnClickListener {
+        binding.coverImageSettings1.setOnClickListener {
             coverChecker = "cover"
             pickImage()
         }
 
-        return view
+        return binding.root
     }
 
     private fun pickImage() {
