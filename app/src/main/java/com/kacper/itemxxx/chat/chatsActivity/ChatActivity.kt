@@ -3,17 +3,7 @@ package com.kacper.itemxxx.chat.chatsActivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager.widget.ViewPager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import com.kacper.itemxxx.R
 import com.kacper.itemxxx.chat.adapters.ViewPagerAdapter
@@ -23,7 +13,6 @@ import com.kacper.itemxxx.chat.chatsFragment.SettingsFragment
 import com.kacper.itemxxx.chat.model.Chat
 import com.kacper.itemxxx.chat.model.Users
 import com.kacper.itemxxx.databinding.ActivityChatBinding
-import com.kacper.itemxxx.databinding.ActivityViewFullImageBinding
 import com.kacper.itemxxx.helpers.AuthenticationHelper.firebaseUser
 import com.kacper.itemxxx.helpers.AuthenticationHelper.refUsers
 import com.kacper.itemxxx.mainPanel.PanelActivity
