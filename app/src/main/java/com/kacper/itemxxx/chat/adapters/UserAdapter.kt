@@ -110,6 +110,7 @@ class UserAdapter(
 
                 if (isChatCheck) {
                     retrieveLastMessage(users.uid, message_last)
+
                 } else {
                     message_last.visibility = View.GONE
                 }

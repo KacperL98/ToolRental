@@ -24,14 +24,14 @@
         android:id="@+id/image_online"
         android:layout_width="19dp"
         android:layout_height="19dp"
-        app:civ_border_width="12dp"
-        app:civ_border_color="#05df29"
+        android:layout_alignEnd="@+id/profile_image_2"
+        android:layout_alignBottom="@+id/profile_image_2"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="-2dp"
         android:src="@drawable/profile"
-        android:layout_below="@+id/usernameTxt"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="-16dp"
-        android:layout_toEndOf="@+id/profile_image"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        app:civ_border_color="#05df29"
+        app:civ_border_width="12dp" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_offline"

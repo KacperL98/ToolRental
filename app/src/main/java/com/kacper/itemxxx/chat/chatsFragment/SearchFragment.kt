@@ -20,6 +20,8 @@ import com.kacper.itemxxx.chat.adapters.UserAdapter
 import com.kacper.itemxxx.chat.model.Users
 import com.kacper.itemxxx.databinding.FragmentChatBinding
 import com.kacper.itemxxx.databinding.FragmentSearchBinding
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_message_chat.*
 
 class SearchFragment : Fragment() {
 
@@ -68,6 +70,7 @@ class SearchFragment : Fragment() {
                         val user: Users? = snapshot.getValue(Users::class.java)
                         if ((user!!.uid) != firebaseUserID){
                             (users as ArrayList<Users>).add(user)
+
                         }
                     }
                     userAdapter = UserAdapter(context!!, users as ArrayList<Users>, false)

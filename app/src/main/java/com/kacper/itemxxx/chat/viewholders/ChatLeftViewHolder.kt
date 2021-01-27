@@ -64,7 +64,7 @@ class ChatLeftViewHolder(private val binding: MessageItemLeftBinding) :
     private fun showMessageInfo(chat: Chat) {
         with(binding) {
             if (chat.isseen) {
-                textSeen.text = "Seen"
+                textSeen.text = ""
                 if (chat.message == "sent you an image." && chat.url != "") {
                     val lp: RelativeLayout.LayoutParams? =
                         textSeen.layoutParams as RelativeLayout.LayoutParams?
@@ -72,7 +72,7 @@ class ChatLeftViewHolder(private val binding: MessageItemLeftBinding) :
                     textSeen.layoutParams = lp
                 }
             } else {
-                textSeen.text = "Sent"
+                textSeen.text = ""
                 if (chat.message == "sent you an image." && chat.url != "") {
                     val lp: RelativeLayout.LayoutParams? =
                         textSeen.layoutParams as RelativeLayout.LayoutParams?

@@ -19,13 +19,13 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
     override fun onMessageReceived(mRemoteMessage: RemoteMessage) {
         super.onMessageReceived(mRemoteMessage)
 
-        val sented = mRemoteMessage.data["sented"]
+        val sent = mRemoteMessage.data["sented"]
         val user = mRemoteMessage.data["user"]
-        val sharedpref = getSharedPreferences("PREFS", Context.MODE_PRIVATE)
-        val currentOnlineUser = sharedpref.getString("currentUser", "none")
+        val sharePref = getSharedPreferences("PREFS", Context.MODE_PRIVATE)
+        val currentOnlineUser = sharePref.getString("currentUser", "none")
 
         val firebaseUser = FirebaseAuth.getInstance().currentUser
-        if (firebaseUser!=null && sented == firebaseUser.uid)
+        if (firebaseUser!=null && sent == firebaseUser.uid)
         {
             if (currentOnlineUser != user){
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
@@ -37,14 +37,14 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             }
         }
     }
-    private fun sendNotifications(mRemoteMessage: RemoteMessage) {
+    private fun sendNotifications(remoteMessage: RemoteMessage) {
 
-        val user = mRemoteMessage.data["user"]
-        val icon = mRemoteMessage.data["icon"]
-        val title = mRemoteMessage.data["title"]
-        val body = mRemoteMessage.data["body"]
+        val user = remoteMessage.data["user"]
+        val icon = remoteMessage.data["icon"]
+        val title =remoteMessage.data["title"]
+        val body = remoteMessage.data["body"]
 
-        val notification = mRemoteMessage.notification
+        val notification = remoteMessage.notification
         val j = user!!.replace("[\\D]".toRegex(), "").toInt()
         val intent = Intent(this, MessageChatActivity::class.java)
 
@@ -65,14 +65,14 @@ class MyFirebaseMessaging : FirebaseMessagingService() {
             .setSound(defaultSound)
             .setContentIntent(pendingIntent)
 
-        val noti = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notify = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         var i = 0
         if (j>0){
             i=j
         }
 
-        noti.notify(i, builder.build())
+        notify.notify(i, builder.build())
     }
     private fun sendOreoNotifications(mRemoteMessage: RemoteMessage) {
         val user = mRemoteMessage.data["user"]

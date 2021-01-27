@@ -23,11 +23,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-
-
-
         login.setOnClickListener {
             activity?.finish()
             startActivity(

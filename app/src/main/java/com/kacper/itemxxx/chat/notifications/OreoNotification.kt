@@ -14,11 +14,6 @@ class OreoNotification (base: Context?) : ContextWrapper(base) {
 
     private var notificationManager: NotificationManager? = null
 
-
-    companion object{
-        private const val  CHANNEL_ID = "com.kacper.itemxxx"
-        private const val  CHANNEL_NAME = "Messenger Chat App"
-    }
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 
@@ -55,5 +50,10 @@ class OreoNotification (base: Context?) : ContextWrapper(base) {
             .setSmallIcon(icon!!.toInt())
             .setSound(soundUri)
             .setAutoCancel(true)
+    }
+
+    companion object{
+        private const val  CHANNEL_ID = "com.kacper.itemxxx"
+        private const val  CHANNEL_NAME = "Messenger Chat App"
     }
 }

@@ -7,21 +7,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.kacper.itemxxx.R
+import com.kacper.itemxxx.databinding.FragmentFirstBinding
+import com.kacper.itemxxx.databinding.FragmentSecondBinding
+import com.kacper.itemxxx.helpers.toastFragment
 import kotlinx.android.synthetic.main.fragment_second.view.*
+import kotlinx.android.synthetic.main.fragment_view_pager.*
 
 class SecondTutorialFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_second, container, false)
-
-        val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
-
-        view.next2.setOnClickListener {
-            viewPager?.currentItem = 2
+        view.imageViewLottie2.setOnClickListener {
+            viewPager.currentItem = 1
         }
         return view
     }

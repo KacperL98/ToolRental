@@ -12,6 +12,8 @@ import com.kacper.itemxxx.db.database.QrResultDataBase
 import com.kacper.itemxxx.db.entities.DbHelper
 import com.kacper.itemxxx.db.entities.DatabaseDao
 import com.kacper.itemxxx.db.entities.QrResult
+import com.kacper.itemxxx.helpers.gone
+import com.kacper.itemxxx.helpers.visible
 import com.kacper.itemxxx.scanner.adapter.ScannedResultListAdapter
 import kotlinx.android.synthetic.main.fragment_scanned_history.view.*
 import kotlinx.android.synthetic.main.layout_header_history.view.*
@@ -21,7 +23,7 @@ class ScannedHistoryFragment : Fragment() {
     enum class ResultListType : Serializable {
         ALL_RESULT, FAVOURITE_RESULT
     }
-    private lateinit var mView: View
+    private lateinit var qrView: View
     private lateinit var databaseDao: DatabaseDao
     private var resultListType: ResultListType? = null
 
@@ -35,17 +37,17 @@ class ScannedHistoryFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mView = inflater.inflate(R.layout.fragment_scanned_history, container, false)
+        qrView = inflater.inflate(R.layout.fragment_scanned_history, container, false)
         init()
         setSwipeRefresh()
         onClicks()
         showListOfResults()
-        return mView.rootView
+        return qrView.rootView
     }
 
     private fun init() {
         databaseDao = DbHelper(QrResultDataBase.getAppDatabase(requireContext())!!)
-        mView.layoutHeader.tvHeaderText.text = getString(R.string.recent_scanned_results)
+        qrView.layoutHeader.tvHeaderText.text = getString(R.string.recent_scanned_results)
     }
 
     private fun showListOfResults() {
@@ -59,13 +61,13 @@ class ScannedHistoryFragment : Fragment() {
     private fun showAllResults() {
         val listOfAllResult = databaseDao.getAllQRScannedResult()
         showResults(listOfAllResult)
-        mView.layoutHeader.tvHeaderText.text = getString(R.string.recent_scanned)
+        qrView.layoutHeader.tvHeaderText.text = getString(R.string.recent_scanned)
     }
 
     private fun showFavouriteResults() {
         val listOfFavouriteResult = databaseDao.getAllFavouriteQRScannedResult()
         showResults(listOfFavouriteResult)
-        mView.layoutHeader.tvHeaderText.text = getString(R.string.favourites_scanned_results)
+        qrView.layoutHeader.tvHeaderText.text = getString(R.string.favourites_scanned_results)
     }
 
 
@@ -77,21 +79,21 @@ class ScannedHistoryFragment : Fragment() {
     }
 
     private fun initRecyclerView(listOfQrResult: List<QrResult>) {
-        mView.scannedHistoryRecyclerView.layoutManager = LinearLayoutManager(context)
-        mView.scannedHistoryRecyclerView.adapter =
+        qrView.scannedHistoryRecyclerView.layoutManager = LinearLayoutManager(context)
+        qrView.scannedHistoryRecyclerView.adapter =
             ScannedResultListAdapter(databaseDao, requireContext(), listOfQrResult.toMutableList())
         showRecyclerView()
     }
 
     private fun setSwipeRefresh() {
-        mView.swipeRefresh.setOnRefreshListener {
-            mView.swipeRefresh.isRefreshing = false
+        qrView.swipeRefresh.setOnRefreshListener {
+            qrView.swipeRefresh.isRefreshing = false
             showListOfResults()
         }
     }
 
     private fun onClicks() {
-        mView.layoutHeader.removeAll.setOnClickListener {
+        qrView.layoutHeader.removeAll.setOnClickListener {
             showRemoveAllScannedResultDialog()
         }
     }
@@ -112,20 +114,20 @@ class ScannedHistoryFragment : Fragment() {
             ResultListType.ALL_RESULT -> databaseDao.deleteAllQRScannedResult()
             ResultListType.FAVOURITE_RESULT -> databaseDao.deleteAllFavouriteQRScannedResult()
         }
-        mView.scannedHistoryRecyclerView.adapter?.notifyDataSetChanged()
+        qrView.scannedHistoryRecyclerView.adapter?.notifyDataSetChanged()
         showListOfResults()
     }
 
     private fun showRecyclerView() {
-        mView.layoutHeader.removeAll.visibility = View.VISIBLE
-        mView.scannedHistoryRecyclerView.visibility = View.VISIBLE
-        mView.noResultFound.visibility = View.GONE
+        qrView.layoutHeader.removeAll.visible()
+        qrView.scannedHistoryRecyclerView.visible()
+        qrView.noResultFound.gone()
     }
 
     private fun showEmptyState() {
-        mView.layoutHeader.removeAll.visibility = View.GONE
-        mView.scannedHistoryRecyclerView.visibility = View.GONE
-        mView.noResultFound.visibility = View.VISIBLE
+        qrView.layoutHeader.removeAll.gone()
+        qrView.scannedHistoryRecyclerView.gone()
+        qrView.noResultFound.visible()
 
     }
     companion object {

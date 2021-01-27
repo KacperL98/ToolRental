@@ -17,17 +17,17 @@ import me.dm7.barcodescanner.zbar.Result
 import me.dm7.barcodescanner.zbar.ZBarScannerView
 
 class QRScannerFragment : Fragment(), ZBarScannerView.ResultHandler {
-    private lateinit var mView: View
+    private lateinit var qrView: View
     lateinit var scannerView: ZBarScannerView
     lateinit var resultDialog: QrCodeResultDialog
     private lateinit var databaseDao: DatabaseDao
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mView = inflater.inflate(R.layout.fragment_qrscanner, container, false)
+        qrView = inflater.inflate(R.layout.fragment_qrscanner, container, false)
         init()
         initViews()
         onClicks()
-        return mView.rootView
+        return qrView.rootView
     }
 
     private fun init() {
@@ -50,7 +50,7 @@ class QRScannerFragment : Fragment(), ZBarScannerView.ResultHandler {
         scannerView.setupScanner()
         scannerView.setAutoFocus(true)
         startQRCamera()
-        mView.containerScanner.addView(scannerView)
+        qrView.containerScanner.addView(scannerView)
     }
 
     private fun setResultDialog() {
@@ -61,8 +61,6 @@ class QRScannerFragment : Fragment(), ZBarScannerView.ResultHandler {
             }
         })
     }
-
-
     override fun handleResult(rawResult: Result?) {
         onQrResult(rawResult?.contents)
     }
@@ -96,8 +94,8 @@ class QRScannerFragment : Fragment(), ZBarScannerView.ResultHandler {
     }
 
     private fun onClicks() {
-        mView.flashToggle.setOnClickListener {
-            if (mView.flashToggle.isSelected) {
+        qrView.flashToggle.setOnClickListener {
+            if (qrView.flashToggle.isSelected) {
                 offFlashLight()
             } else {
                 onFlashLight()
@@ -106,12 +104,12 @@ class QRScannerFragment : Fragment(), ZBarScannerView.ResultHandler {
     }
 
     private fun onFlashLight() {
-        mView.flashToggle.isSelected = true
+        qrView.flashToggle.isSelected = true
         scannerView.flash = true
     }
 
     private fun offFlashLight() {
-        mView.flashToggle.isSelected = false
+        qrView.flashToggle.isSelected = false
         scannerView.flash = false
     }
 

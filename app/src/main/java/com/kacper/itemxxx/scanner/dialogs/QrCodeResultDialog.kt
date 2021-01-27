@@ -26,6 +26,7 @@ class QrCodeResultDialog(var context: Context) {
         init()
         initDialog()
     }
+
     private fun init() {
         databaseDao = DbHelper(QrResultDataBase.getAppDatabase(context)!!)
     }
@@ -70,6 +71,7 @@ class QrCodeResultDialog(var context: Context) {
             reference.push().setValue(hashMap)
         }
     }
+
     private fun addToFavourite() {
         dialog.favouriteIcon.isSelected = true
         databaseDao.addToFavourite(qrResult?.id!!)
@@ -108,6 +110,7 @@ class QrCodeResultDialog(var context: Context) {
         )
         context.startActivity(Intent.createChooser(txtIntent, "Share QR Result"))
     }
+
     interface OnDismissListener {
         fun onDismiss()
     }

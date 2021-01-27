@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -20,9 +19,9 @@ import com.kacper.itemxxx.R
 import com.kacper.itemxxx.chat.adapters.ChatsAdapter
 import com.kacper.itemxxx.chat.notifications.APIService
 import com.kacper.itemxxx.chat.model.Chat
+import com.kacper.itemxxx.chat.model.Data
 import com.kacper.itemxxx.chat.model.Users
 import com.kacper.itemxxx.chat.notifications.*
-import com.kacper.itemxxx.databinding.ActivityChatBinding
 import com.kacper.itemxxx.databinding.ActivityMessageChatBinding
 import com.kacper.itemxxx.helpers.AuthenticationHelper.firebaseUser
 import com.kacper.itemxxx.helpers.AuthenticationHelper.refUsers
@@ -45,6 +44,7 @@ class MessageChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMessageChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setSupportActionBar(binding.toolbarMessageChat)
         supportActionBar!!.title = ""
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -177,24 +177,23 @@ class MessageChatActivity : AppCompatActivity() {
                     val sender = Sender(data, token!!.getToken().toString())
 
                     apiService!!.sendNotification(sender)
-                        .enqueue(object : Callback<MyResponse> {
+                        .enqueue(object : Callback<Data> {
                             override fun onResponse(
-                                call: Call<MyResponse>,
-                                response: Response<MyResponse>
+                                call: Call<Data>,
+                                response: Response<Data>
                             ) {
                                 if (response.code() == 200) {
                                     if (response.body()!!.success != 1) {
                                         Toast.makeText(
                                             this@MessageChatActivity,
-                                            "Send.Message!",
-                                            Toast.LENGTH_LONG
+                                            "Send message",
+                                            Toast.LENGTH_SHORT
                                         ).show()
 
                                     }
                                 }
                             }
-                            override fun onFailure(call: Call<MyResponse>, t: Throwable) {
-
+                            override fun onFailure(call: Call<Data>, t: Throwable) {
                             }
                         })
                 }

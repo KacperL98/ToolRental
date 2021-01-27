@@ -19,7 +19,6 @@ class ScannedResultListAdapter(
     private var listOfScannedResult: MutableList<QrResult>
 ) :
     RecyclerView.Adapter<ScannedResultListAdapter.ScannedResultListViewHolder>() {
-
     private var resultDialog: QrCodeResultDialog =
         QrCodeResultDialog(context)
 
@@ -59,8 +58,6 @@ class ScannedResultListAdapter(
             else
                 view.favouriteIcon.visibility = View.GONE
         }
-
-
         private fun onClicks(qrResult: QrResult, position: Int) {
             view.setOnClickListener {
                 resultDialog.show(qrResult)
@@ -82,7 +79,6 @@ class ScannedResultListAdapter(
                     dialog.cancel()
                 }.show()
         }
-
         private fun deleteThisRecord(qrResult: QrResult, position: Int) {
             databaseDao.deleteQrResult(qrResult.id!!)
             listOfScannedResult.removeAt(position)
